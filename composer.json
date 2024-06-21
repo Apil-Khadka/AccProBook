@@ -1,0 +1,23 @@
+{
+  "name": "silent-night/hackathon",
+  "autoload": {
+    "psr-4": {
+      "config\\": "Config/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Apil Khadka",
+      "email": "apilkhadka2020@gmail.com"
+    }
+  ],
+  "require": {
+    "dompdf/dompdf": ">=3.0.0",
+    "ext-json": "*",
+    "ext-pdo": "*",
+    "ext-ftp": "*",
+    "ext-curl": "*",
+    "league/flysystem": "@stable",
+    "league/flysystem-local": "@stable"
+  }
+}
