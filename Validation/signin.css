@@ -1,0 +1,131 @@
+  /* Basic Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container Styling */
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    background-color: white;
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: zoomIn 0.5s ease;
+}
+
+/* Logo and Company Name Styling */
+.logo {
+    width: 50px;
+    height: 50px;
+    margin-bottom: -15px;
+   
+}
+
+.companyName {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #202557;
+    text-align: center;
+   
+    margin-top:25px ;
+    margin-bottom: 23px;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form h3{
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ;
+    color: #202557;
+    margin-bottom: 20px;
+   padding-left:0px;
+   margin-top:20px;
+   margin-bottom:30px;
+}
+
+/* Label and Input Styling */
+label {
+    color: #333;
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 18px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #202557;
+}
+
+/* Button Styling */
+button {
+    padding: 15px;
+    border: none;
+    background-color: #202557;
+    color: white;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #262779;
+}
+
+button:active{
+opacity: 0.95;
+}
+
+/* Error and Success Message Styling */
+.error-message,
+.success-message {
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.error-message {
+    color: red;
+}
+
+.success-message {
+    color: green;
+}
+
+/* Animation */
+@keyframes zoomIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

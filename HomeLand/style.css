@@ -1,0 +1,324 @@
+/* General Styles */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa; /* Light gray background */
+  color: #333; /* Dark text color */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* Header Styles */
+
+header {
+  background-color: #202557; /* Dark blue background */
+  color: white; /* White text color */
+  padding: 10px 0;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.logo {
+  height: 40px; /* Adjust logo height as needed */
+}
+
+.navbar-toggler {
+  display: none; /* Hide navbar toggler for desktop view */
+}
+
+.navbar-collapse {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.navbar-nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nav-item {
+   margin-left: 10px;
+   margin-top: -40px;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}
+
+/* Hero Section Styles */
+
+#hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#hero h1 {
+  font-size: 2.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+#hero .btn-primary {
+  margin-top: 200px;
+}
+
+.learn-more-btn {
+  background-color: #202557;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-bottom: 1000vh;
+  text-decoration: none; /* Remove underline */
+  
+}
+
+.learn-more-btn:hover {
+  background-color: #394867; /* Darker shade on hover */
+  color: white;
+}
+
+/* About Section Styles */
+
+#about {
+  padding: 100px 0;
+}
+
+#about h2 {
+  text-align: center;
+}
+
+#about ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+/* Services Section Styles */
+
+#services {
+  background-color: #ffffff; /* White background */
+  padding: 100px 0;
+  text-align: center;
+}
+
+#services h2 {
+  margin-bottom: 50px;
+}
+
+#services .col-md-4 {
+  margin-bottom: 30px;
+}
+
+/* Pricing Section Styles */
+
+#pricing {
+  background-color: #f8f9fa; /* Light gray background */
+  padding: 100px 0;
+  text-align: center;
+}
+
+#pricing h2 {
+  margin-bottom: 50px;
+}
+
+.pricing-options {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.pricing-container {
+  width: 300px;
+  background-color: #ffffff; /* White background */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.pricing-container:hover {
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+
+.price-digit {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.inclusion {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.inclusion p {
+  margin-bottom: 5px;
+}
+
+.button-container {
+  text-align: center;
+}
+
+.button {
+  background-color: #007bff; /* Bootstrap blue */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Contact Section Styles */
+
+#contact {
+  background-color: #ffffff; /* White background */
+  padding: 100px 0;
+  text-align: center;
+}
+
+#contact h2 {
+  margin-bottom: 50px;
+}
+
+#contact form {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+#contact form .form-group {
+  margin-bottom: 20px;
+}
+
+#contact form input,
+#contact form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+#contact form textarea {
+  resize: vertical; /* Allow vertical resizing of textarea */
+}
+
+#contact form button {
+  background-color: #007bff; /* Bootstrap blue */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#contact form button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Footer Styles */
+
+footer {
+  background-color: #f8f9fa; /* Light gray background */
+  padding: 30px 0;
+  text-align: center;
+}
+
+footer a {
+  color: #333;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+  .navbar-toggler {
+      display: block; /* Display navbar toggler for mobile */
+      background-color: #202557; /* Dark blue background for toggler */
+      color: white; /* White text color for toggler */
+      border: none;
+      padding: 10px 15px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 1500;
+  }
+
+  .navbar-collapse {
+      display: none; /* Hide navbar menu by default on mobile */
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background-color: #202557; /* Dark blue background for menu */
+      padding: 10px 0;
+  }
+
+  .navbar-nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+  }
+
+  .nav-item {
+      margin: 0;
+  }
+
+  .nav-link {
+      color: white;
+      text-decoration: none;
+      padding: 10px 0;
+      width: 100%;
+      text-align: center;
+  }
+
+  .nav-link:hover {
+      background-color: #394867; /* Darker blue on hover */
+  }
+
+  .navbar-collapse.show {
+      display: flex;
+  }
+
+  #hero h1 {
+      font-size: 2rem;
+  }
+
+  .pricing-container {
+      width: calc(100% - 40px); /* Full width pricing containers */
+      max-width: 300px;
+  }
+}
+

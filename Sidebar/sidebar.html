@@ -1,0 +1,118 @@
+
+
+<div class="l-navbar" id="navbar" style="width: 240px;">
+    <nav class="nav">
+        <div>
+            <div class="nav__brand" style="padding-left: 140;">
+                <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
+                <a href="#" class="nav__logo">PROBOOK</a>
+            </div>
+            <div class="nav__list" >
+                <a id="dashboard" href="/website/project/Hakathon/Dashboard/dashboard.php" class="nav__link ">
+                    <ion-icon name="home-outline" class="nav__icon"></ion-icon>
+                    <span class="nav__name">Dashboard</span>
+                </a>
+
+                <div id="company"
+                 class="nav__link collapse root__collapse ">
+                    <ion-icon name="business" class="nav__icon "></ion-icon>
+                    <span class="nav__name">Company</span>
+
+                    <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                    <ul class="collapse__menu">
+                        <a href="/website/project/Hakathon/Company/add_company.php" class="collapse__sublink">Add Company</a><br>
+                        <a href="/website/project/Hakathon/Company/company_list.php" class="collapse__sublink">List Company</a>
+                    </ul>
+                </div>
+                <div  id="customer" class="nav__link collapse root__collapse">
+                    <ion-icon name="person" class="nav__icon"></ion-icon>
+                    <span class="nav__name">Customer</span>
+
+                    <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                    <ul class="collapse__menu">
+                        <a href="/website/project/Hakathon/Customer/add-customer.php" class="collapse__sublink">Add Customer</a>
+                        <br>
+                        <a href="/website/project/Hakathon/Customer/customer_list.php" class="collapse__sublink">List Customer</a>
+                    </ul>
+                </div>
+                <div  id="product" class="nav__link collapse root__collapse">
+                    <ion-icon name="cart" class="nav__icon"></ion-icon>
+                    <span class="nav__name">Product</span>
+
+                    <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                    <ul class="collapse__menu">
+                        <a href="/website/project/Hakathon/Products/add_product.php" class="collapse__sublink">Add </a>
+                        <br>
+                        <a href="/website/project/Hakathon/Products/product-list.php" class="collapse__sublink">List</a>
+                    </ul>
+                </div>
+
+                <div id="transactions" class="nav__link collapse root__collapse">
+                    <ion-icon name="card-sharp" class="nav__icon"></ion-icon>
+                    <span class="nav__name">Transactions</span>
+
+                    <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                    <ul class="collapse__menu">
+                        <a href="/website/project/Hakathon/Transaction/Credit/credits.php" class="collapse__sublink">Add Credit</a><br>
+                        <a href="/website/project/Hakathon/Transaction/Debit/Debit.php" class="collapse__sublink">Add Debit</a><br>
+                     <a href="/website/project/Hakathon/Transaction/Balancing_Sheet/BalancingSheet.php" class="collapse__sublink">Balance Sheet</a>
+
+
+                    </ul>
+                </div>
+
+                <div  id="invoice" class="nav__link collapse root__collapse">
+                    <ion-icon name="document-attach-sharp" class="nav__icon"></ion-icon>
+                    <span class="nav__name">Invoice</span>
+
+                    <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                    <ul class="collapse__menu">
+                        <a href="/website/project/Hakathon/Invoice/add_invoice.php" class="collapse__sublink">Invoice</a><br>
+                        <a href="/website/project/Hakathon/Invoice/pdfGen/list-invoice.php" class="collapse__sublink">List</a>
+
+
+                    </ul>
+                </div>
+
+                <a href="/website/project/Hakathon/staffs/staff.php" class="nav__link">
+                    <ion-icon name="people-sharp" class="nav__icon"></ion-icon>
+                    <span class="nav__name">Staffs</span>
+                </a>
+                
+
+                        
+
+                <a href="/website/project/Hakathon/tax.sys/tax_.php" class="nav__link">
+                    <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
+                    <span class="nav__name">Tax Calculator</span>
+                </a>
+
+                <div  id="Setting" class="nav__link collapse root__collapse">
+                    <ion-icon name="settings-outline" class="nav__icon"></ion-icon>
+                    <span class="nav__name">Setting</span>
+
+                    <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                    <ul class="collapse__menu">
+                        <a href="/website/project/Hakathon/Setting/yourInfo/info.php" class="collapse__sublink">Business Info</a>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <a href="/website/project/Hakathon/API/logout.php" class="nav__link">
+            <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+            <span class="nav__name">Log Out</span>
+        </a>
+    </nav>
+</div>
+
+<script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule="" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"></script>

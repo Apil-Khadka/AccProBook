@@ -1,0 +1,96 @@
+/* General styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 20px;
+    color: #343a40;
+    font-weight: 700;
+}
+
+/* Table styles */
+.table-responsive {
+    margin: 20px auto;
+    width: 90%;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+}
+
+.table thead th {
+    background-color: #e9ecef;
+    border: 1px solid #dee2e6;
+    color: #495057;
+    font-weight: 600;
+    padding: 10px;
+    text-align: left;
+}
+
+.table tbody td {
+    border: 1px solid #dee2e6;
+    padding: 10px;
+    color: #495057;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+/* Button styles */
+.btn {
+    padding: 5px 10px;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 2px 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    color: #ffffff;
+    border: none;
+}
+
+.btn-info:hover {
+    background-color: #138496;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #ffffff;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Center no records message */
+.text-center {
+    text-align: center;
+    font-style: italic;
+    color: #6c757d;
+}
+
+/* Styles for sidebar (if needed) */
+#body-pd {
+    padding-left: 250px; /* Adjust this based on your sidebar width */
+}
+
+@media screen and (max-width: 768px) {
+    #body-pd {
+        padding-left: 0;
+    }
+}

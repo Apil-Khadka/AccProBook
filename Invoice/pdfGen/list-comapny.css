@@ -1,0 +1,78 @@
+/* Style for body */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style for h2 */
+h2 {
+    text-align: center;
+    margin-top: 20px;
+    color: #343a40;
+    font-weight: 700;
+}
+
+/* Styles for table */
+.table-responsive {
+    margin: 20px;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+.table thead th {
+    background-color: #e9ecef;
+    border: 1px solid #dee2e6;
+    color: #495057;
+    font-weight: 600;
+    text-align: left;
+}
+
+.table tbody td {
+    border: 1px solid #dee2e6;
+    padding: 8px;
+    color: #495057;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+/* Styles for actions buttons */
+.btn {
+    padding: 5px 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border: none;
+    color: #ffffff;
+}
+
+.btn-info:hover {
+    background-color: #138496;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+    color: #ffffff;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Center the no records message */
+.text-center {
+    text-align: center;
+    font-style: italic;
+    color: #6c757d;
+}

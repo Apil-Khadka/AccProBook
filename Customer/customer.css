@@ -1,0 +1,108 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container Styling */
+body {
+    font-family: 'Karla', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+    margin: 0; /* Remove default margin */
+    background-color: #f4f4f4;
+}
+
+.container {
+    background-color: white;
+    padding: 15px; /* Further reduced padding */
+    width: 100%;
+    max-width: 800px; /* Slightly reduced max-width */
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    animation: zoomIn 0.5s ease;
+    margin-top: 0; /* Remove top margin */
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form h2 {
+    color: #202557;
+    margin-bottom: 10px; /* Further reduced margin */
+    text-align: center;
+    font-size: 18px; /* Reduced font size */
+}
+.first{
+    width: 300px;
+}
+.second{
+    width: 350px;
+    margin-left: 400px;
+}
+.last{
+    margin-top: -75px;
+    margin-left: 400px;
+}
+
+/* Label and Input Styling */
+label {
+    color: #333;
+    margin-bottom: 5px;
+    font-size: 14px; /* Reduced font size */
+}
+
+input, select {
+    padding: 10px; /* Reduced padding */
+    margin-bottom: 10px; /* Further reduced margin */
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px; /* Reduced font size */
+    transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #202557;
+}
+
+/* Button Styling */
+button {
+    padding: 10px; /* Reduced padding */
+    border: none;
+    background-color: #202557;
+    color: white;
+    font-size: 16px; /* Reduced font size */
+    border-radius: 6px;
+    width: 200px;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #262779;
+}
+
+.contain{
+    margin-left:30px;
+}
+
+
+/* Animation */
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
