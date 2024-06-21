@@ -5,13 +5,15 @@ Landing Page is at
   -> All CRUD operations are allowed on basic Forms
 
   Features are to add
-     1. Customer
-     2. Company
-     3. Credit
-     4. Debit
+     1. Customer <br>
+     2. Company <br>
+     3. Credit <br>
+     4. Debit <br>
      5. Invoices
-  PDF could be generated for
-  -> Balance Sheet
+<br>
+     
+  PDF could be generated for <br>
+  -> Balance Sheet <br>
   -> Invoices
   
   
