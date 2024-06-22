@@ -1,5 +1,5 @@
 {
-  "name": "apil/managementapp",
+  "name": "silent-night/hackathon",
   "autoload": {
     "psr-4": {
       "config\\": "Config/"
