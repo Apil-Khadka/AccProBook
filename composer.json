@@ -1,5 +1,5 @@
 {
-  "name": "apil/management",
+  "name": "apil/managementapp",
   "autoload": {
     "psr-4": {
       "config\\": "Config/"
@@ -7,7 +7,7 @@
   },
   "authors": [
     {
-      "name": "apil",
+      "name": "Apil Khadka",
       "email": "apilkhadka2020@gmail.com"
     }
   ],
