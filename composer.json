@@ -1,5 +1,5 @@
 {
-  "name": "ManagemetAPp",
+  "name": "apil/management",
   "autoload": {
     "psr-4": {
       "config\\": "Config/"
@@ -7,8 +7,8 @@
   },
   "authors": [
     {
-      "name": "",
-      "email": ""
+      "name": "apil",
+      "email": "apilkhadka2020@gmail.com"
     }
   ],
   "require": {
