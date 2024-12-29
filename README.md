@@ -18,6 +18,9 @@
 ## Demo
 
 Explore the live demo here: [AccProBook Demo](https://lavapp.helioho.st/)
+Use guest user and password:
+Email: test@gmail.com
+Password: test@123
 
 ## Installation
 
