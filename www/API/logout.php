@@ -9,5 +9,5 @@ $_SESSION = array();
 session_destroy();
 
 // Redirect to login page or any other desired page after logout
-header("location: /website/project/Hakathon/Validation/signIn.html");
+header('location: /Validation/signIn.html');
 exit;

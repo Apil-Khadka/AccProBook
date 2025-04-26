@@ -1,3 +1,6 @@
+<?php
+include_once ('../Config/config.php');
+echo '
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,20 +27,19 @@
 <body class="bg-gray-100 text-gray-800">
 
 <div class="container mx-auto p-4">
-    <?php
-    include_once("../Config/config.php");
+';
 
-    if (isset($_GET['product_id'])) {
-        $company_id = htmlspecialchars($_GET['product_id']);
+if (isset($_GET['product_id'])) {
+    $company_id = htmlspecialchars($_GET['product_id']);
 
-        $query = "SELECT * FROM Product WHERE product_id = :product_id";
-        $stmt = $conn->prepare($query);
-        $stmt->bindParam(':product_id', $company_id);
-        $stmt->execute();
-        $product = $stmt->fetch(PDO::FETCH_ASSOC);
+    $query = 'SELECT * FROM Product WHERE product_id = :product_id';
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(':product_id', $company_id);
+    $stmt->execute();
+    $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($product) {
-            echo '
+    if ($product) {
+        echo '
         <h2 class="text-2xl font-bold mb-4">Product Summary</h2>
         <form id="updateCompanyForm" action="../API/Update/update_customer.php" method="POST" class="bg-white p-6 rounded-lg shadow-lg">
             <input type="hidden" name="product_id" value="' . htmlspecialchars($product['product_id']) . '">
@@ -62,11 +64,11 @@
                 </a>
             </div>
         </form>';
-        } else {
-            echo '<p class="text-center text-red-500">No company found with the given ID.</p>';
-        }
+    } else {
+        echo '<p class="text-center text-red-500">No company found with the given ID.</p>';
     }
-    ?>
+}
+?>
     <span id="serverError" class="error-message"></span>
     <span id="serverSuccess" class="success-message"></span>
 </div>

@@ -1,3 +1,6 @@
+<?php
+include_once ('../Config/config.php');
+echo '
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,22 +27,21 @@
 <body class="bg-gray-100 text-gray-800">
 
 <div class="container mx-auto p-4">
-    <?php
-    include_once("../Config/config.php");
+    ';
 
-    if (isset($_GET['company_id'])) {
-        $company_id = htmlspecialchars($_GET['company_id']);
+if (isset($_GET['company_id'])) {
+    $company_id = htmlspecialchars($_GET['company_id']);
 
-        $query = "SELECT * FROM Company WHERE company_id = :company_id";
-        $stmt = $conn->prepare($query);
-        $stmt->bindParam(':company_id', $company_id);
-        $stmt->execute();
-        $company = $stmt->fetch(PDO::FETCH_ASSOC);
+    $query = 'SELECT * FROM Company WHERE company_id = :company_id';
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(':company_id', $company_id);
+    $stmt->execute();
+    $company = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($company) {
-            echo '
+    if ($company) {
+        echo '
         <h2 class="text-2xl font-bold mb-4">Company Summary</h2>
-        <form id="updateCompanyForm" action="../API/Update/update_customer.php" method="POST" class="bg-white p-6 rounded-lg shadow-lg">
+        <form id="updateCompanyForm" action="../API/Update/update_company.php" method="POST" class="bg-white p-6 rounded-lg shadow-lg">
             <input type="hidden" name="company_id" value="' . htmlspecialchars($company['company_id']) . '">
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="companyName">Company Name</label>
@@ -86,11 +88,11 @@
                 </a>
             </div>
         </form>';
-        } else {
-            echo '<p class="text-center text-red-500">No company found with the given ID.</p>';
-        }
+    } else {
+        echo '<p class="text-center text-red-500">No company found with the given ID.</p>';
     }
-    ?>
+}
+?>
     <span id="serverError" class="error-message"></span>
     <span id="serverSuccess" class="success-message"></span>
 </div>
@@ -106,7 +108,7 @@
             serverError.textContent = '';
             serverSuccess.textContent = '';
             const formData = new FormData(this);
-            axios.post('../API/Update/update_company.php', formData)
+            axios.post('/API/Update/update_company.php', formData)
                 .then(function (response) {
                     if (response.data.success) {
                         console.log(response.data.message)

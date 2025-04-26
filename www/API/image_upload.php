@@ -7,36 +7,32 @@ use League\Flysystem\Filesystem;
  * @throws \League\Flysystem\FilesystemException
  * @throws Exception
  */
-function uploadFile(array $file, string $uploadDir): string
+function uploadFile(array $file): string
 {
-    if (!is_dir($uploadDir)) {
-        mkdir($uploadDir, 0777, true);
+    $root = realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/file_upload');
+    if ($root === false) {
+        throw new Exception('Upload folder missing at sibling level');
     }
-    // Mime types allowed
-    $allowedMimeTypes = ['image/jpeg', 'image/png', 'image/svg', 'image/jpg'];
+    if (!is_dir($root) && !mkdir($root, 0755, true)) {
+        throw new Exception('Cannot create upload dir');
+    }
 
-    // Initialize Flysystem adapter and filesystem
-    $adapter = new LocalFilesystemAdapter($uploadDir);
+    $adapter = new LocalFilesystemAdapter($root);
     $filesystem = new Filesystem($adapter);
 
-    if ($file['error'] == UPLOAD_ERR_OK) {
-        if (in_array($file['type'], $allowedMimeTypes)) {
-            $filename = basename($file['name']);
-
-            // Use Flysystem to move the uploaded file
-            $stream = fopen($file['tmp_name'], 'r+');
-            $filesystem->writeStream($filename, $stream);
-            if (is_resource($stream)) {
-                fclose($stream);
-            }
-            $filePath = $uploadDir . '/' . $filename;
-            chmod($filePath, 0777);  // Set permissions to 0777
-
-            return '/file_upload' . '/' . $filename;
-        } else {
-            throw new Exception('Invalid file type.');
-        }
-    } else {
+    if ($file['error'] !== UPLOAD_ERR_OK) {
         throw new Exception('File upload error.');
     }
+
+    $allowed = ['image/jpeg', 'image/png', 'image/svg+xml', 'image/jpg'];
+    if (!in_array($file['type'], $allowed, true)) {
+        throw new Exception('Invalid file type.');
+    }
+
+    $name = basename($file['name']);
+    $stream = fopen($file['tmp_name'], 'r');
+    $filesystem->writeStream($name, $stream);
+    fclose($stream);
+
+    return '/file_upload/' . $name;
 }

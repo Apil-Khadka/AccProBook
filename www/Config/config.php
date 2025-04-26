@@ -1,7 +1,8 @@
 <?php
-session_start();
+if (session_status() != PHP_SESSION_ACTIVE) {
+    session_start();
+}
 if (!isset($_SESSION['user_id'])) {
-    // Redirect to login page
     header('Location: /Validation/signIn.html');
     exit;
 }
@@ -25,3 +26,5 @@ try {
 } catch (PDOException $e) {
     throw new PDOException($e->getMessage(), (int) $e->getCode());
 }
+
+?>

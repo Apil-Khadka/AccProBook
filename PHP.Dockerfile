@@ -16,6 +16,10 @@ RUN apk add --no-cache \
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql curl ftp
+# To upload image
+# RUN mkdir -p /usr/share/nginx/html/file_upload \
+#     && chown -R www-data:www-data /usr/share/nginx/html/file_upload \
+#     && chmod 775 /usr/share/nginx/html/file_upload
 
 # Set working directory
 WORKDIR /usr/share/nginx/html/
@@ -30,3 +34,5 @@ COPY ./www /usr/share/nginx/html/
 RUN composer install --no-interaction
 
 EXPOSE 9000
+
+USER www-data

@@ -15,14 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $website = $_POST['website'];
 
-    $uploadDir = '/file_upload';
-
     $fileType = '';
     $response = [];
 
     if (isset($_FILES['logo_path']) && $_FILES['logo_path']['error'] == 0) {
         try {
-            $fileType = uploadFile($_FILES['logo_path'], $uploadDir);
+            $fileType = uploadFile($_FILES['logo_path']);
         } catch (FilesystemException $e) {
             $response = [
                 'success' => false,
@@ -73,4 +71,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     echo json_encode($response);
 }
-
