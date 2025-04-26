@@ -1,0 +1,45 @@
+services:
+  web:
+    image: apilk/accprobook:nginx
+    container_name: accprobook_web
+    ports:
+      - "80:80"
+    depends_on:
+      - php
+    volumes:
+      - app_data:/usr/share/nginx/html
+    networks:
+      - accProBook
+
+  php:
+    image: apilk/accprobook:php
+    container_name: accprobook_php
+    expose:
+      - "9000"
+    depends_on:
+      - mysql
+    volumes:
+      - app_data:/usr/share/nginx/html
+    networks:
+      - accProBook
+
+  mysql:
+    image: apilk/accprobook:db
+    container_name: accprobook_db
+    ports:
+      - "3360:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "secret"
+    networks:
+      - accProBook
+    restart: unless-stopped
+
+volumes:
+  db_data:
+  app_data:
+
+networks:
+  accProBook:
+    driver: bridge
