@@ -18,40 +18,41 @@
 <body>
 <div class="container">
     <div class="header">
-        <h1><?= $businessInfo['business_name'] ?></h1>
-        <p><?= $businessInfo['address'] ?></p>
-        <p>Contact: <?= $businessInfo['contact_number'] ?> | Email: <?= $businessInfo['email'] ?> | Website: <?= $businessInfo['website'] ?></p>
-        <img src="<?= 'http://localhost/' . $businessInfo['logo_path'] ?>" alt="Business Logo" style="max-width: 150px;">
+        <h1><?= htmlspecialchars($businessInfo['business_name'] ?? '') ?></h1>
+        <p><?= htmlspecialchars($businessInfo['address'] ?? '') ?></p>
+        <p>Contact: <?= htmlspecialchars($businessInfo['contact_number'] ?? '') ?> | Email: <?= htmlspecialchars($businessInfo['email'] ?? '') ?> | Website: <?= htmlspecialchars($businessInfo['website'] ?? '') ?></p>
+        <?php if (!empty($businessInfo['logo_path'])): ?>
+            <img src="<?= htmlspecialchars('http://localhost/' . ltrim($businessInfo['logo_path'], '/')) ?>" alt="Business Logo" style="max-width: 150px;">
+        <?php endif; ?>
     </div>
 
     <div class="invoice-info">
         <h2>Invoice</h2>
-        <p><strong>Invoice Number:</strong> <?= $invoice['invoice_number'] ?></p>
-        <p><strong>Invoice Date:</strong> <?= $invoice['invoice_date'] ?></p>
-        <p><strong>Due Date:</strong> <?= $invoice['invoice_due_date'] ?></p>
-        <p><strong>Terms:</strong> <?= $invoice['terms'] ?></p>
+        <p><strong>Invoice Number:</strong> <?= htmlspecialchars($invoice['invoice_number'] ?? '') ?></p>
+        <p><strong>Invoice Date:</strong> <?= htmlspecialchars($invoice['invoice_date'] ?? '') ?></p>
+        <p><strong>Due Date:</strong> <?= htmlspecialchars($invoice['invoice_due_date'] ?? '') ?></p>
+        <p><strong>Terms:</strong> <?= htmlspecialchars($invoice['terms'] ?? '') ?></p>
     </div>
 
-    <?php if ($type == 'Customer'): ?>
+    <?php if (($type ?? '') === 'Customer'): ?>
         <div class="customer-info">
             <h3>Bill To:</h3>
-            <p><?= $customer['firstname'] . ' ' . $customer['lastname'] ?></p>
-            <p><?= $customer['street'] ?></p>
-            <p><?= $customer['city'] . ', ' . $customer['state'] . ' ' . $customer['postalcode'] ?></p>
-            <p>Email: <?= $customer['email'] ?> | Phone: <?= $customer['phone'] ?></p>
-            <p><strong>Company:</strong> <?= $customer['customer_id'] ?></p>
+            <p><?= htmlspecialchars(($customer['firstname'] ?? '') . ' ' . ($customer['lastname'] ?? '')) ?></p>
+            <p><?= htmlspecialchars($customer['street'] ?? '') ?></p>
+            <p><?= htmlspecialchars(($customer['city'] ?? '') . ', ' . ($customer['state'] ?? '') . ' ' . ($customer['postalcode'] ?? '')) ?></p>
+            <p>Email: <?= htmlspecialchars($customer['email'] ?? '') ?> | Phone: <?= htmlspecialchars($customer['phone'] ?? '') ?></p>
+            <p><strong>Company:</strong> <?= htmlspecialchars($customer['customer_id'] ?? '') ?></p>
         </div>
     <?php else: ?>
         <div class="customer-info">
             <h3>Bill To:</h3>
-            <p><?= $customer['companyName'] ?></p>
-            <p><?= $customer['companyAddress'] ?></p>
-            <p><?= $customer['state'] . ', ' . $customer['country'] ?></p>
-            <p>Email: <?= $customer['companyEmail'] ?> | Phone: <?= $customer['phoneNumber'] ?></p>
-            <p><strong>Company:</strong> <?= $customer['company_id'] ?></p>
+            <p><?= htmlspecialchars($customer['companyName'] ?? '') ?></p>
+            <p><?= htmlspecialchars($customer['companyAddress'] ?? '') ?></p>
+            <p><?= htmlspecialchars(($customer['state'] ?? '') . ', ' . ($customer['country'] ?? '')) ?></p>
+            <p>Email: <?= htmlspecialchars($customer['companyEmail'] ?? '') ?> | Phone: <?= htmlspecialchars($customer['phoneNumber'] ?? '') ?></p>
+            <p><strong>Company:</strong> <?= htmlspecialchars($customer['company_id'] ?? '') ?></p>
         </div>
     <?php endif; ?>
-
 
     <div class="invoice-details">
         <table>
@@ -69,22 +70,22 @@
             </thead>
             <tbody>
             <tr>
-                <td><?= $product['productName'] ?></td>
-                <td><?= $product['productDescription'] ?></td>
-                <td><?= number_format($invoice['rate'], 2) ?></td>
-                <td><?= number_format($invoice['quantity'], 2) ?></td>
-                <td><?= number_format($invoice['subtotal'], 2) ?></td>
-                <td><?= number_format($invoice['discount'], 2) ?>%</td>
-                <td><?= number_format($invoice['tax'], 2) ?></td>
-                <td><?= number_format($invoice['total_amount'], 2) ?></td>
+                <td><?= htmlspecialchars($product['productName'] ?? '') ?></td>
+                <td><?= htmlspecialchars($product['productDescription'] ?? '') ?></td>
+                <td><?= number_format((float) ($invoice['rate'] ?? 0), 2) ?></td>
+                <td><?= number_format((float) ($invoice['quantity'] ?? 0), 2) ?></td>
+                <td><?= number_format((float) ($invoice['subtotal'] ?? 0), 2) ?></td>
+                <td><?= number_format((float) ($invoice['discount'] ?? 0), 2) ?>%</td>
+                <td><?= number_format((float) ($invoice['tax'] ?? 0), 2) ?></td>
+                <td><?= number_format((float) ($invoice['total_amount'] ?? 0), 2) ?></td>
             </tr>
             </tbody>
         </table>
     </div>
 
     <div class="footer">
-        <p><?= $businessInfo['business_name'] ?> | <?= $businessInfo['address'] ?></p>
-        <p>Contact: <?= $businessInfo['contact_number'] ?> | Email: <?= $businessInfo['email'] ?> | Website: <?= $businessInfo['website'] ?></p>
+        <p><?= htmlspecialchars($businessInfo['business_name'] ?? '') ?> | <?= htmlspecialchars($businessInfo['address'] ?? '') ?></p>
+        <p>Contact: <?= htmlspecialchars($businessInfo['contact_number'] ?? '') ?> | Email: <?= htmlspecialchars($businessInfo['email'] ?? '') ?> | Website: <?= htmlspecialchars($businessInfo['website'] ?? '') ?></p>
     </div>
 </div>
 </body>
