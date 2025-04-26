@@ -2,7 +2,7 @@
 session_start();
 if (!isset($_SESSION['user_id'])) {
     // Redirect to login page
-    header('Location: ../Validation/signIn.html');
+    header('Location: /Validation/signIn.html');
     exit;
 }
 $host = 'mysql';

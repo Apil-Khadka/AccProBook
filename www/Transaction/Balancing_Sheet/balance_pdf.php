@@ -1,10 +1,11 @@
 <?php
-require '../../vendor/autoload.php'; // Adjust the path as necessary
+require '../../vendor/autoload.php';  // Adjust the path as necessary
+
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
 // Fetch data from your API or database
-$url = 'localhost/website/project/Hakathon/API/Fetch/fetch_balance_sheet.php'; // Adjust the URL to your API
+$url = '/API/Fetch/fetch_balance_sheet.php';  // Adjust the URL to your API
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -25,3 +26,4 @@ $dompdf->loadHtml($html);
 $dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
 $dompdf->stream('invoice.pdf', ['Attachment' => 0]);
+

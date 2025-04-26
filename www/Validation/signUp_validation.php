@@ -3,8 +3,10 @@ require_once ('./config_login.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $response = [];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $firstname = $_POST['firstname'] ?? '';
+    $lastname = $_POST['lastname'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
 
     try {
         // Check if email already exists
@@ -23,8 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
             // Insert new user
-            $insertQuery = 'INSERT INTO users (useremail, password) VALUES (:email, :password)';
+            $insertQuery = 'INSERT INTO users (firstname, lastname, useremail, password) 
+                            VALUES (:firstname, :lastname, :email, :password)';
             $insertStmt = $conn->prepare($insertQuery);
+            $insertStmt->bindValue(':firstname', $firstname);
+            $insertStmt->bindValue(':lastname', $lastname);
             $insertStmt->bindValue(':email', $email);
             $insertStmt->bindValue(':password', $hashedPassword);
             $insertStmt->execute();

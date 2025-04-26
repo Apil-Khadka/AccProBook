@@ -21,7 +21,7 @@
         <h1><?= $businessInfo['business_name'] ?></h1>
         <p><?= $businessInfo['address'] ?></p>
         <p>Contact: <?= $businessInfo['contact_number'] ?> | Email: <?= $businessInfo['email'] ?> | Website: <?= $businessInfo['website'] ?></p>
-        <img src="<?='http://localhost/'. $businessInfo['logo_path'] ?>" alt="Business Logo" style="max-width: 150px;">
+        <img src="<?= 'http://localhost/' . $businessInfo['logo_path'] ?>" alt="Business Logo" style="max-width: 150px;">
     </div>
 
     <div class="invoice-info">
@@ -32,7 +32,7 @@
         <p><strong>Terms:</strong> <?= $invoice['terms'] ?></p>
     </div>
 
-    <?php if($type == "Customer"): ?>
+    <?php if ($type == 'Customer'): ?>
         <div class="customer-info">
             <h3>Bill To:</h3>
             <p><?= $customer['firstname'] . ' ' . $customer['lastname'] ?></p>
