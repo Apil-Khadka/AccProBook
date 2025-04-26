@@ -1,5 +1,5 @@
 <?php
-include_once('../../Config/config.php');
+include_once ('../../Config/config.php');
 
 require '../../vendor/autoload.php';
 
@@ -7,7 +7,7 @@ use League\Flysystem\FilesystemException;
 
 require '../image_upload.php';
 
-if($_SERVER["REQUEST_METHOD"]=="POST") {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user_id = $_SESSION['user_id'];
     $business_name = $_POST['business_name'];
     $address = $_POST['address'];
@@ -15,7 +15,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
     $email = $_POST['email'];
     $website = $_POST['website'];
 
-    $uploadDir = '/opt/lampp/htdocs/website/project/file_upload';
+    $uploadDir = '/file_upload';
 
     $fileType = '';
     $response = [];
@@ -25,26 +25,26 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
             $fileType = uploadFile($_FILES['logo_path'], $uploadDir);
         } catch (FilesystemException $e) {
             $response = [
-                "success" => false,
-                "message" => "Failed to Upload Logo: " . $e->getMessage()
+                'success' => false,
+                'message' => 'Failed to Upload Logo: ' . $e->getMessage()
             ];
         } catch (Exception $e) {
             $response = [
-                "success" => false,
-                "message" => "Failed to Upload Logo: " . $e->getMessage()
+                'success' => false,
+                'message' => 'Failed to Upload Logo: ' . $e->getMessage()
             ];
         }
     } else {
         $response = [
-            "success" => false,
-            "message" => "Failed to Upload Logo"
+            'success' => false,
+            'message' => 'Failed to Upload Logo'
         ];
     }
-    if($fileType) {
+    if ($fileType) {
         $logo_path = $fileType;
     }
     try {
-        $query ="INSERT INTO BusinessInfo(user_id,business_name,address,contact_number,email,website,logo_path) VALUES(:user_id,:business_name,:address,:contact_number,:email,:website,:logo_path)";
+        $query = 'INSERT INTO BusinessInfo(user_id,business_name,address,contact_number,email,website,logo_path) VALUES(:user_id,:business_name,:address,:contact_number,:email,:website,:logo_path)';
         $stmt = $conn->prepare($query);
         $stmt->bindParam(':user_id', $user_id);
         $stmt->bindParam(':business_name', $business_name);
@@ -53,23 +53,24 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':website', $website);
         $stmt->bindParam(':logo_path', $logo_path);
-        if($stmt->execute()){
-            $response =[
-                "success"=> true,
-                "message" => "Info Updated Successfully"
+        if ($stmt->execute()) {
+            $response = [
+                'success' => true,
+                'message' => 'Info Updated Successfully'
             ];
         } else {
-            $response =[
-                "success" => false,
-                "message" => "Failed to Update Info"
+            $response = [
+                'success' => false,
+                'message' => 'Failed to Update Info'
             ];
         }
     } catch (PDOException $e) {
-        $response =[
-            "success" => false,
-            "message" => "Failed to Update Info"
+        $response = [
+            'success' => false,
+            'message' => 'Failed to Update Info'
         ];
-        echo "Error: " . $e->getMessage();
+        echo 'Error: ' . $e->getMessage();
     }
     echo json_encode($response);
 }
+

@@ -1,5 +1,5 @@
 <?php
-include_once("../../Config/config.php");
+include_once ('../../Config/config.php');
 
 ?>
 <!DOCTYPE html>
@@ -32,13 +32,13 @@ include_once("../../Config/config.php");
 <body class="bg-gray-100 text-gray-800 body-pd" id="body-pd">
 
 <?php
-include_once("../../Sidebar/sidebar.html");
+include_once ('../../Sidebar/sidebar.html');
 ?>
 
 <div class="container mx-auto p-4">
     <?php
     $user_id = $_SESSION['user_id'];
-    $query = "SELECT *, COUNT(*) AS count FROM BusinessInfo WHERE user_id=:user_id ORDER BY business_id DESC LIMIT 1";
+    $query = 'SELECT *, COUNT(*) AS count FROM BusinessInfo WHERE user_id=:user_id ORDER BY business_id DESC LIMIT 1';
     $stmt = $conn->prepare($query);
     $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
     $stmt->execute();
@@ -135,7 +135,7 @@ include_once("../../Sidebar/sidebar.html");
                 serverSuccess.textContent = '';
 
                 const formData = new FormData(this);
-                axios.post('/website/project/Hakathon/API/Insert/insert_business_info.php', formData)
+                axios.post('/API/Insert/insert_business_info.php', formData)
                     .then(function (response) {
                         console.log(response.data)
                         if (response.data.success) {
@@ -165,7 +165,7 @@ include_once("../../Sidebar/sidebar.html");
                 serverSuccess.textContent = '';
 
                 const formData = new FormData(this);
-                axios.post('/website/project/Hakathon/API/Update/update_business_info.php', formData)
+                axios.post('/API/Update/update_business_info.php', formData)
                     .then(function (response) {
                         if (response.data.success) {
                             serverSuccess.textContent = response.data.message;

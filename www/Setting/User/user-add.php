@@ -89,7 +89,7 @@
 
 <body id="body-pd" class="body-pd">
 <?php
-include_once("../../Sidebar/sidebar.html");
+include_once ('../../Sidebar/sidebar.html');
 ?>
 <div>
     <img class="logo" src="star_sparkle_stars_sparkles_icon_new.png" alt="">
@@ -157,7 +157,7 @@ include_once("../../Sidebar/sidebar.html");
 
         const formData = new FormData(this);
         // Axios POST request
-        axios.post('../../API/Insert/insert_users.php', formData)
+        axios.post('/API/Insert/insert_users.php', formData)
             .then(function(response) {
                 if (response.data.success) {
                     // Display success message to the user

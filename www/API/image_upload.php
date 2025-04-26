@@ -1,7 +1,7 @@
 <?php
 
-use League\Flysystem\Filesystem;
 use League\Flysystem\Local\LocalFilesystemAdapter;
+use League\Flysystem\Filesystem;
 
 /**
  * @throws \League\Flysystem\FilesystemException
@@ -12,7 +12,7 @@ function uploadFile(array $file, string $uploadDir): string
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0777, true);
     }
-    //Mime types allowed
+    // Mime types allowed
     $allowedMimeTypes = ['image/jpeg', 'image/png', 'image/svg', 'image/jpg'];
 
     // Initialize Flysystem adapter and filesystem
@@ -30,14 +30,13 @@ function uploadFile(array $file, string $uploadDir): string
                 fclose($stream);
             }
             $filePath = $uploadDir . '/' . $filename;
-            chmod($filePath, 0777); // Set permissions to 0777
+            chmod($filePath, 0777);  // Set permissions to 0777
 
-            return '/website/project/file_upload'.'/'.$filename;
+            return '/file_upload' . '/' . $filename;
         } else {
-            throw new Exception("Invalid file type.");
+            throw new Exception('Invalid file type.');
         }
     } else {
-        throw new Exception("File upload error.");
+        throw new Exception('File upload error.');
     }
 }
-

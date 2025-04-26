@@ -10,7 +10,7 @@ CREATE TABLE users (
 );
 
 Insert into users (firstName, lastName, useremail, password) values
-('John', 'Doe', 'test@example.com', '$2a$10$vmunZShzMEzd3sifMM0mYuSyqpmU5ZBNTYUuVC1bQFJXzRf8iplMS');
+('John', 'Doe', 'test@example.com', '$2a$10$vmunZShzMEzd3sifMM0mYuSyqpmU5ZBNTYUuVC1bQFJXzRf8iplMS'); -- test123
 
 
 CREATE TABLE BusinessInfo (
@@ -22,6 +22,7 @@ CREATE TABLE BusinessInfo (
     email VARCHAR(150),
     website VARCHAR(255),
     logo_path VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
@@ -37,6 +38,7 @@ CREATE TABLE Company (
     state VARCHAR(100),
     country VARCHAR(100),
     URL VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
@@ -52,6 +54,7 @@ CREATE TABLE Customer (
     state VARCHAR(100),
     postalcode VARCHAR(20),
     country VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
@@ -61,6 +64,7 @@ CREATE TABLE Product (
     productName VARCHAR(255),
     productPrice DECIMAL(10,2),
     productDescription TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
@@ -69,6 +73,7 @@ CREATE TABLE Terms (
     user_id INT,
     termName VARCHAR(255),
     termData TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
@@ -100,4 +105,42 @@ CREATE TABLE Invoice (
     FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
     FOREIGN KEY (company_id)  REFERENCES Company(company_id),
     FOREIGN KEY (product_id)  REFERENCES Product(product_id)
+);
+
+-- ─────── Credit Table ─────────────────────────────────────────────────────────
+CREATE TABLE Credit (
+    credit_id           INT             AUTO_INCREMENT PRIMARY KEY,
+    user_id             INT             NOT NULL,
+    customer_id         INT             DEFAULT NULL,
+    company_id          INT             DEFAULT NULL,
+    credit_date         DATE            NOT NULL,
+    credit_description  TEXT,
+    credit_amount       DECIMAL(12,2)   NOT NULL,
+    created_at          TIMESTAMP       DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT chk_credit_party CHECK (
+        (customer_id IS NOT NULL AND company_id IS NULL)
+     OR (customer_id IS NULL     AND company_id IS NOT NULL)
+    ),
+    FOREIGN KEY (user_id)     REFERENCES users(user_id),
+    FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
+    FOREIGN KEY (company_id)  REFERENCES Company(company_id)
+);
+
+-- ─────── Debit Table ──────────────────────────────────────────────────────────
+CREATE TABLE Debit (
+    debit_id            INT             AUTO_INCREMENT PRIMARY KEY,
+    user_id             INT             NOT NULL,
+    customer_id         INT             DEFAULT NULL,
+    company_id          INT             DEFAULT NULL,
+    debit_date          DATE            NOT NULL,
+    debit_description   TEXT,
+    debit_amount        DECIMAL(12,2)   NOT NULL,
+    created_at          TIMESTAMP       DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT chk_debit_party CHECK (
+        (customer_id IS NOT NULL AND company_id IS NULL)
+     OR (customer_id IS NULL     AND company_id IS NOT NULL)
+    ),
+    FOREIGN KEY (user_id)     REFERENCES users(user_id),
+    FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
+    FOREIGN KEY (company_id)  REFERENCES Company(company_id)
 );
