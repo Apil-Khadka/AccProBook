@@ -1,11 +1,11 @@
 <?php
-require("../../vendor/autoload.php");
+require ('../../vendor/autoload.php');
 include_once '../../Config/config.php';
+
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
 try {
-
     $type = null;
     $user_id = $_SESSION['user_id'];
     $invoice_id = $_GET['invoice_id'];
@@ -15,26 +15,25 @@ try {
     $stmt->execute();
     $invoice = $stmt->fetch(PDO::FETCH_ASSOC);
 
-     // Assuming invoice_id is passed as a query parameter
-    if( $invoice['customer_id'] == null) {
+    // Assuming invoice_id is passed as a query parameter
+    if ($invoice['customer_id'] == null) {
         $company_id = $invoice['company_id'];
         $stmt = $conn->prepare('SELECT * FROM Company WHERE company_id = :company_id');
         $stmt->bindValue(':company_id', $company_id, PDO::PARAM_INT);
         $stmt->execute();
         $customer = $stmt->fetch(PDO::FETCH_ASSOC);
-        $type="Company";
+        $type = 'Company';
     } else {
         $customer_id = $invoice['customer_id'];
         $stmt = $conn->prepare('SELECT * FROM Customer WHERE customer_id = :customer_id');
         $stmt->bindValue(':customer_id', $customer_id, PDO::PARAM_INT);
         $stmt->execute();
         $customer = $stmt->fetch(PDO::FETCH_ASSOC);
-        $type="Customer";
+        $type = 'Customer';
     }
 
     $product_id = $invoice['product_id'];
     // Fetching customer data
-
 
     // Fetching product data
     $stmt = $conn->prepare('SELECT * FROM Product WHERE product_id = :product_id');
@@ -55,14 +54,14 @@ try {
 
     $options = new Options();
     $options->set('isHtml5ParserEnabled', true);
-    $options->set('isRemoteEnabled', true);
+    $options->setIsRemoteEnabled(true);
 
     $dompdf = new Dompdf($options);
     $dompdf->loadHtml($html);
     $dompdf->setPaper('A4', 'portrait');
     $dompdf->render();
     $dompdf->stream('invoice.pdf', ['Attachment' => 0]);
-
 } catch (PDOException $e) {
     echo 'Connection failed: ' . $e->getMessage();
 }
+

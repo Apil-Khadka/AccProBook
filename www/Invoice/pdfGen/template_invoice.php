@@ -22,8 +22,8 @@
         <p><?= htmlspecialchars($businessInfo['address'] ?? '') ?></p>
         <p>Contact: <?= htmlspecialchars($businessInfo['contact_number'] ?? '') ?> | Email: <?= htmlspecialchars($businessInfo['email'] ?? '') ?> | Website: <?= htmlspecialchars($businessInfo['website'] ?? '') ?></p>
         <?php if (!empty($businessInfo['logo_path'])): ?>
-            <img src="<?= htmlspecialchars('http://localhost/' . ltrim($businessInfo['logo_path'], '/')) ?>" alt="Business Logo" style="max-width: 150px;">
-        <?php endif; ?>
+    <img src="http://localhost/<?= htmlspecialchars($businessInfo['logo_path']) ?>" alt="Logo" class="rounded-lg shadow-lg" style="max-width: 200px; max-height: 200px;">
+     <?php endif; ?>
     </div>
 
     <div class="invoice-info">
