@@ -89,7 +89,7 @@
 
 <body id="body-pd" class="body-pd">
 <?php
-include_once ('../../Sidebar/sidebar.html');
+include_once ('../Sidebar/sidebar.html');
 ?>
 <div>
     <img class="logo" src="star_sparkle_stars_sparkles_icon_new.png" alt="">

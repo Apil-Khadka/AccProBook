@@ -113,9 +113,9 @@ CREATE TABLE Credit (
     user_id             INT             NOT NULL,
     customer_id         INT             DEFAULT NULL,
     company_id          INT             DEFAULT NULL,
-    credit_date         DATE            NOT NULL,
-    credit_description  TEXT,
-    credit_amount       DECIMAL(12,2)   NOT NULL,
+    credit_Date         DATE            NOT NULL,
+    credit_Description  TEXT,
+    credit_Amount       DECIMAL(12,2)   NOT NULL,
     created_at          TIMESTAMP       DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT chk_credit_party CHECK (
         (customer_id IS NOT NULL AND company_id IS NULL)
@@ -132,9 +132,9 @@ CREATE TABLE Debit (
     user_id             INT             NOT NULL,
     customer_id         INT             DEFAULT NULL,
     company_id          INT             DEFAULT NULL,
-    debit_date          DATE            NOT NULL,
-    debit_description   TEXT,
-    debit_amount        DECIMAL(12,2)   NOT NULL,
+    debit_Date          DATE            NOT NULL,
+    debit_Description   TEXT,
+    debit_Amount        DECIMAL(12,2)   NOT NULL,
     created_at          TIMESTAMP       DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT chk_debit_party CHECK (
         (customer_id IS NOT NULL AND company_id IS NULL)

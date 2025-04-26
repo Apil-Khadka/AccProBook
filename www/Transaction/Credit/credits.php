@@ -1,5 +1,5 @@
 <?php
-include_once("../../Config/config.php");
+include_once ('../../Config/config.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +25,7 @@ include_once("../../Config/config.php");
 </head>
 <body id="body-pd" class="body-pd">
 <?php
-include_once("../../Sidebar/sidebar.html");
+include_once ('../../Sidebar/sidebar.html');
 ?>
     <div class="container">
         <div class="new-credits">
@@ -66,16 +66,16 @@ include_once("../../Sidebar/sidebar.html");
             <tbody id="recent-credits-body">
             <?php
 
-            $totalCredit=0;
-            include_once("../../API/Fetch/fetch_credit.php");
+            $totalCredit = 0;
+            include_once ('../../API/Fetch/fetch_credit.php');
             try {
                 if (count($credit) > 0) {
                     foreach ($credit as $data) {
-                        $totalCredit=$totalCredit+$data['credit_Amount'];
+                        $totalCredit = $totalCredit + $data['credit_Amount'];
                         echo '
                     <tr>
-                    <td class="p-2">'.htmlspecialchars($data['credit_Date']).'</td>
-                    <td class="p-2">'.htmlspecialchars($data['credit_Amount']).'</td>
+                    <td class="p-2">' . htmlspecialchars($data['credit_Date']) . '</td>
+                    <td class="p-2">' . htmlspecialchars($data['credit_Amount']) . '</td>
                         
                     </tr>';
                     }
@@ -97,7 +97,7 @@ include_once("../../Sidebar/sidebar.html");
         let successMessage = document.getElementById('successMessage');
         let errorMessage = document.getElementById('errorMessage');
 
-        axios.get('../../API/Fetch/fetch_client.php')
+        axios.get('/API/Fetch/fetch_client.php')
             .then(response => {
                 const clients = response.data;
                 const clientSelect = document.getElementById('clientSelect');
@@ -143,6 +143,6 @@ include_once("../../Sidebar/sidebar.html");
     });
 </script>
  <script src="../../Sidebar/main.js"></script>
-<script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+<script nomodule="" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

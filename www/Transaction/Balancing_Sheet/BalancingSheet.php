@@ -8,7 +8,7 @@
 </head>
 <body id="body-pd" class="body-pd p-6 bg-gray-100">
 <?php
-include_once("../../Sidebar/sidebar.html");
+include_once ('../../Sidebar/sidebar.html');
 ?>
 <h1 class="text-3xl font-bold mb-6">Credit and Debit Information</h1>
 

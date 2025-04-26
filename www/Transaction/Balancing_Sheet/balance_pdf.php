@@ -5,13 +5,18 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 
 // Fetch data from your API or database
-$url = '/API/Fetch/fetch_balance_sheet.php';  // Adjust the URL to your API
+$url = 'http://localhost/API/Fetch/fetch_balance_sheet.php';  // Adjust the URL to your API
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $data = curl_exec($ch);
 curl_close($ch);
 $response = json_decode($data, true);
+
+var_dump($data);
+var_dump($response);
+echo "\n\n---\n\n";
+var_dump(json_last_error_msg());
 
 ob_start();
 include 'balancing_sheet_template.php';
@@ -26,4 +31,3 @@ $dompdf->loadHtml($html);
 $dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
 $dompdf->stream('invoice.pdf', ['Attachment' => 0]);
-
