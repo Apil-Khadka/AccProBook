@@ -52,7 +52,14 @@ include_once ('../../Sidebar/sidebar.html');
     <p class="text-lg">Total Debit: <span id="total-debit" class="font-bold"></span></p>
     <p class="text-lg">Net Amount: <span id="net-amount" class="font-bold"></span></p>
 </div>
-<a href="balance_pdf.php" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Generate Pdf</a>
+<form id="pdfForm" method="post" action="balance_pdf.php">
+  <!-- hidden field to hold the JSON -->
+  <input type="hidden" name="sheetData" id="sheetData">
+  <button type="submit"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    Generate Pdf
+  </button>
+</form>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
@@ -60,6 +67,7 @@ include_once ('../../Sidebar/sidebar.html');
         axios.get('../../API/Fetch/fetch_balance_sheet.php') // Adjust the path to your PHP script
             .then(function(response) {
                 if (response.data) {
+                    document.getElementById('sheetData').value = JSON.stringify(response.data);
                     // Populate Credit Table
                     var creditRows = '';
                     response.data.credits.forEach(function(credit) {
@@ -73,6 +81,7 @@ include_once ('../../Sidebar/sidebar.html');
                         creditRows += '<td>' + "Rs."+credit.credit_Amount + '</td>';
                         creditRows += '</tr>';
                     });
+
                     document.querySelector('#credit-table tbody').innerHTML = creditRows;
 
                     // Populate Debit Table

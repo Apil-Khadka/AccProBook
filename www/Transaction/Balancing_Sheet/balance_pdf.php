@@ -1,33 +1,69 @@
 <?php
-require '../../vendor/autoload.php';  // Adjust the path as necessary
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+error_reporting(E_ERROR | E_PARSE);
+session_start();
+
+require '../../vendor/autoload.php';
+include_once '../../Config/config.php';
 
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
-// Fetch data from your API or database
-$url = 'http://localhost/API/Fetch/fetch_balance_sheet.php';  // Adjust the URL to your API
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-$data = curl_exec($ch);
-curl_close($ch);
-$response = json_decode($data, true);
+$user_id = $_SESSION['user_id'] ?? null;
+if (!$user_id) {
+    die('User not authenticated');
+}
 
-var_dump($data);
-var_dump($response);
-echo "\n\n---\n\n";
-var_dump(json_last_error_msg());
+$creditStmt = $conn->prepare(
+    'SELECT Credit.*, Customer.firstname AS customer_name, Company.companyName AS company_name
+     FROM Credit
+     LEFT JOIN Customer ON Credit.customer_id = Customer.customer_id
+     LEFT JOIN Company ON Credit.company_id = Company.company_id
+     WHERE Credit.user_id = :user_id
+     ORDER BY Credit.credit_Date DESC'
+);
+$creditStmt->execute([':user_id' => $user_id]);
+$credits = $creditStmt->fetchAll(PDO::FETCH_ASSOC);
+
+$debitStmt = $conn->prepare(
+    'SELECT Debit.*, Customer.firstname AS customer_name, Company.companyName AS company_name
+     FROM Debit
+     LEFT JOIN Customer ON Debit.customer_id = Customer.customer_id
+     LEFT JOIN Company ON Debit.company_id = Company.company_id
+     WHERE Debit.user_id = :user_id
+     ORDER BY Debit.debit_Date DESC'
+);
+$debitStmt->execute([':user_id' => $user_id]);
+$debits = $debitStmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Calculate totals
+$totalCredit = array_sum(array_map(fn($c) => (float) $c['credit_Amount'], $credits));
+$totalDebit = array_sum(array_map(fn($d) => (float) $d['debit_Amount'], $debits));
+$netAmount = $totalCredit - $totalDebit;
+
+$response = [
+    'credits' => $credits,
+    'debits' => $debits,
+    'totalCredit' => $totalCredit,
+    'totalDebit' => $totalDebit,
+    'netAmount' => $netAmount,
+];
 
 ob_start();
 include 'balancing_sheet_template.php';
 $html = ob_get_clean();
 
-$options = new Options();
-$options->set('isHtml5ParserEnabled', true);
-$options->set('isRemoteEnabled', true);
+$options = (new Options())
+    ->set('isHtml5ParserEnabled', true)
+    ->set('isRemoteEnabled', true);
 
 $dompdf = new Dompdf($options);
 $dompdf->loadHtml($html);
 $dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
-$dompdf->stream('invoice.pdf', ['Attachment' => 0]);
+
+if (ob_get_length())
+    ob_end_clean();
+$dompdf->stream('balance_sheet.pdf', ['Attachment' => 0]);
+exit;
