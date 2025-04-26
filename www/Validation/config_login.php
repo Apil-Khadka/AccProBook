@@ -1,7 +1,7 @@
 <?php
 session_start();
 $host = 'mysql';
-$port = '3360';
+$port = '3306';
 $db = 'ProBook';
 $user = 'root';
 $pass = 'secret';
