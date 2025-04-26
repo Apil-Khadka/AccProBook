@@ -1,0 +1,37 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./www:/usr/share/nginx/html
+    depends_on:
+      - php
+
+  php:
+    build:
+      context: .
+      dockerfile: PHP.Dockerfile
+    volumes:
+      - ./www:/usr/share/nginx/html
+    expose:
+      - "9000"
+
+  mysql:
+    image: mariadb:11.7.1-ubi9-rc
+    environment:
+      MYSQL_ROOT_PASSWORD: "secret"
+      MYSQL_DATABASE: "ProBook"
+    volumes:
+      - mySqlData:/var/lib/mysql
+    ports:
+      - "3360:3306"
+
+volumes:
+  mySqlData:
+
+networks:
+  default:
+    driver: bridge
