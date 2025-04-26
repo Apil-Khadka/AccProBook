@@ -62,7 +62,7 @@ include_once ('../../Sidebar/sidebar.html');
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="companyPhone">Phone <span class="required">*</span></label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="companyPhone" type="phoneNumber" name="contact_number" required>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="companyPhone" type="number" name="contact_number" required>
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="companyWebsite">Website</label>
@@ -95,7 +95,7 @@ include_once ('../../Sidebar/sidebar.html');
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="companyPhone">Phone <span class="required">*</span></label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="companyPhone" type="phoneNumber" name="contact_number" value="' . htmlspecialchars($business['contact_number']) . '" required>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="companyPhone" type="number" name="contact_number" value="' . htmlspecialchars($business['contact_number']) . '" required>
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="companyWebsite">Website</label>

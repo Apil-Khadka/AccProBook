@@ -17,15 +17,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $website = $_POST['website'];
     $logo_path = $_POST['logo_path'];
 
-    // Define upload directory
-    $uploadDir = '/file_upload';
-
     $fileType = '';
     $response = [];
 
-    if (isset($_FILES['logo_path_up']) && $_FILES['logo_path_up']['error'] == 0) {
+    if (isset($_FILES['logo_path_up'])) {
         try {
             $fileType = uploadFile($_FILES['logo_path_up']);
+            error_log('DBG uploadFile returned: ' . var_export($fileType, true));
+            var_dump('file' . $fileType);
+            $logo_path = $fileType;
         } catch (FilesystemException $e) {
             $response = [
                 'success' => false,
@@ -58,13 +58,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bindParam(':contact_number', $contact_number, PDO::PARAM_STR);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':website', $website, PDO::PARAM_STR);
+        var_dump('Error' . $logo_path);
         $stmt->bindParam(':logo_path', $logo_path, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             $response = [
                 'success' => true,
                 'message' => 'Info Updated Successfully'
-                // send reload to refresh page
             ];
         } else {
             $response = [
@@ -81,4 +81,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     echo json_encode($response);
 }
-

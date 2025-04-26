@@ -46,7 +46,7 @@
             <h3>Bill To:</h3>
             <p><?= $customer['companyName'] ?></p>
             <p><?= $customer['companyAddress'] ?></p>
-            <p><?= $customer['city'] . ', ' . $customer['state'] ?></p>
+            <p><?= $customer['state'] . ', ' . $customer['country'] ?></p>
             <p>Email: <?= $customer['companyEmail'] ?> | Phone: <?= $customer['phoneNumber'] ?></p>
             <p><strong>Company:</strong> <?= $customer['company_id'] ?></p>
         </div>
