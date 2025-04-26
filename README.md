@@ -1,4 +1,3 @@
-````markdown
 # AccProBook
 
 **AccProBook** is a robust web application designed to streamline financial operations and manage essential business records efficiently. With full CRUD operations, detailed entity management, and professional PDF reporting, it’s perfect for small to medium businesses.
@@ -75,7 +74,6 @@
      accProBook:
        driver: bridge
    ```
-````
 
 2. **Launch** all services with one command:
 
